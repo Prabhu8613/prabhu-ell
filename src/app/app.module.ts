@@ -4,7 +4,8 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { AppHeaderComponent } from './app-header/app-header.component';
 import { CampaignComponent } from './campaign/campaign.component';
-
+import { UserService } from './campaign/user-service';
+import { HttpModule } from '@angular/http';
 
 @NgModule({
   declarations: [
@@ -13,10 +14,11 @@ import { CampaignComponent } from './campaign/campaign.component';
     CampaignComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpModule
     
   ],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -69,3 +69,7 @@
 background-color: lightgrey;
 border: none;
 }
+
+.row-options {
+    padding: .7rem 0rem 0rem 0rem; 
+}

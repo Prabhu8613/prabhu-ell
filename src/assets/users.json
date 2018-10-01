@@ -1,0 +1,32 @@
+[
+    {
+        "firstName": "prabhu",
+        "lastName": "Kencharaddi",
+        "email": "prabhu8613@gmail.com",
+        "phone": "8892654970",
+        "city": "Kidlington",
+        "age": "27",
+        "gender": "male",
+        "region": "Oxford"
+    },
+    {
+        "firstName": "Mohan",
+        "lastName": "Kumar",
+        "email": "mohanbtech15@gmail.com",
+        "phone": "8892654971",
+        "city": "Birmingham",
+        "age": "27",
+        "gender": "male",
+        "region": "Worcestershire"
+    },
+    {
+        "firstName": "Devi",
+        "lastName": "Rakshith",
+        "email": "devirakshith@gmail.com",
+        "phone": "8892654972",
+        "city": "Reading",
+        "age": "27",
+        "gender": "male",
+        "region": "Berkshire"
+    }
+]
