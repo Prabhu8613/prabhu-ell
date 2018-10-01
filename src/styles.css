@@ -1,0 +1,41 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.css";
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+.btn-light:hover {
+    color: #212529;
+    background-color: #ffd100;
+    border-color: #ffd100;
+}
+
+.btn-light {
+    border: #ffd100;
+    border-style: solid;
+}
+
+.form-control:focus {
+    border-color: #ffd100;
+    box-shadow: 0 0 0 0.2rem #ffd100;
+}
+
+.LockOn {
+    display: block;
+    visibility: visible;
+    position: fixed;
+    z-index: 999;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background-color:grey;
+    vertical-align:middle;
+    filter: alpha(opacity=90);
+    opacity: 0.90;
+    font-size:large;
+    color:black;
+    font-weight:300;
+    /*background-image: url("src\assets\loading.gif");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;*/
+}

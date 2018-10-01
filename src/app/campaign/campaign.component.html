@@ -1,0 +1,93 @@
+<div class="row rowTab">
+  <div class="colsTab cursor"><img src="src/assets/DashBoard.svg" height="30px" width="40px">DashBoard</div>
+  <div class="colsTab cursor"><img src="src/assets/Manage.svg" height="30px" width="40px">Manage Campaign</div>
+  <div class="colsTab cursor"><img src="src/assets/Contacts.svg" height="30px" width="40px">Contact</div>
+  <div class="colsTab cursor"><img src="src/assets/Customer.svg" height="30px" width="40px">Customers</div>
+  <div class="colsTab cursor"><img src="src/assets/Email.svg" height="30px" width="40px">Email</div>
+</div>
+<div style="background-color: #F5F5F5; padding: 5rem">
+  <div style="text-align: center">
+    <h3>Create your campaign in 3 simple steps!</h3>
+    <table style="padding: 5%; align-content: center; width: 100%">
+      <tr>
+        <td style="width: 33%"><img class="images" src="src/assets/Picture6.svg" height="250px" width="200px"></td>
+        <td style="width: 33%"><img class="images" src="src/assets/Picture7.svg" height="250px" width="200px"></td>
+        <td style="width: 33%"><img class="images" src="src/assets/Picture8.svg" height="250px" width="200px"></td>
+      </tr>
+      <tr>
+        <td style="width: 33%">
+          <h6>1. Choose your target audience</h6>
+        </td>
+        <td style="width: 33%">
+          <h6>2. Choose campaign type and create content</h6>
+        </td>
+        <td style="width: 33%">
+          <h6>3. Schedule, Test and Run your campaign</h6>
+        </td>
+      </tr>
+    </table>
+
+    <h5 style="padding: 5% 0%"> We want you to focus on your customers and spend less time setting up Marketing
+      Campaigns. Yell CRM campaigns
+      features automated URL tracker to track your customer behavior, automated opt out subscription list and
+      intelligent
+      reports that help you run successful campaigns in a few clicks.</h5>
+    <button class="btn btn-warning">Let’s get started with your first Campaign</button>
+  </div>
+
+
+  <div>
+    <h3>Create your campaign in 3 simple steps!</h3>
+    <div class="stepwizard" style="padding: 2rem 0rem;">
+      <div class="stepwizard-row setup-panel">
+        <div class="stepwizard-step">
+          <button class="btn btn-warning btn-circle" disabled="true">1</button>
+          <p>Choose your target audience</p>
+        </div>
+        <div class="stepwizard-step">
+          <button class="btn btn-warning btn-circle btn-circle-disabled" [class.btn-circle-disabled]="step != 2"
+            disabled="true">2</button>
+          <p>Choose campaign type and <br> create content</p>
+        </div>
+        <div class="stepwizard-step">
+          <button class="btn btn-warning btn-circle btn-circle-disabled" [class.btn-circle-disabled]="step != 3"
+            disabled="true">3</button>
+          <p>Schedule, Test and Run <br> your campaign</p>
+        </div>
+      </div>
+    </div>
+    <div style="padding: 2rem 2rem;overflow-y: scroll; height:350px;background-color: white">
+      <div class="row">
+        <div class="cols col-sm-5">
+          <p>Choose from Yell’s intelligent target list tailored for you <br><i><u style="color:steelblue">Assured
+                Results</u></i></p>
+        </div>
+        <div class="cols col-sm-3">
+          <select class="form-control">
+            <option selected>Choose Target</option>
+            <option>Target List 1</option>
+            <option>Target List 1</option>
+            <option>Target List 1</option>
+          </select>
+        </div>
+      </div>
+      <div class="row rowMenu">Or</div>
+      <div class="row rowMenu">Choose your target audience based on Demographics <b> (0 Selected)</b></div>
+      <div class="row">
+        <div class="cols col-sm-5">
+          <p>Region</p>
+        </div>
+        <div class="cols col-sm-3">
+          <select class="form-control">
+            <option selected>Choose Target</option>
+            <option>Target List 1</option>
+            <option>Target List 1</option>
+            <option>Target List 1</option>
+          </select>
+        </div>
+      </div>
+      <div class="row rowMenu">Age group</div>
+      <div class="row rowMenu">Gender</div>
+    </div>
+  </div>
+</div>
