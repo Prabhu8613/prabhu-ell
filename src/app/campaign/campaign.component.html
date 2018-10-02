@@ -182,7 +182,7 @@
           <thead>
             <tr class="table-active">
               <th scope="col"> All
-                <input type="checkbox" value="{{ allItemsSelected }}" (change)="selectAll()">
+                <input type="checkbox" name="isActive" [(ngModel)]="allItemsSelected" (change)="selectAll()">
               </th>
               <th scope="col">First Name</th>
               <th scope="col">Last Name</th>
@@ -190,12 +190,15 @@
               <th scope="col">Phone Number</th>
               <th scope="col">City</th>
               <th scope="col">Age</th>
-              <th scope="col">Gender</th> 
+              <th scope="col">Gender</th>
             </tr>
           </thead>
           <tbody *ngFor="let user of users; let index = index">
             <tr>
-              <td align="center"><input type="checkbox" [checked]="allItemsSelected" value="{{ user.isChecked }}" (change)="selectItem()"></td>
+              <td align="center">
+                <input type="checkbox" [(ngModel)]="user.isChecked" (change)="selectItem()">
+                <!-- <input type="checkbox" [checked]="user.isChecked" value="" (change)="selectItem()"> {{ user.isChecked }}  -->
+              </td>
               <td scope="col">{{user.firstName}}</td>
               <td scope="col">{{user.lastName}}</td>
               <td scope="col">{{user.email}}</td>
@@ -206,6 +209,35 @@
             </tr>
           </tbody>
         </table>
+      </div>
+    </div>
+    <div style="padding: 2rem 2rem;overflow-y: scroll; height:350px;background-color: white">
+      <div class="row">
+        <div class="col-sm-4">
+          Enter Campaign Name
+        </div>
+        <div class="col-sm-4">
+          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Campaign name">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4">
+          Choose your Campaign type
+        </div>
+        <div class="col-sm-4">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4">
+          Choose your Template
+        </div>
+        <div class="col-sm-4">
+        </div>
+      </div>
+      <div class="cols" style="border-style: solid">
+          <input type="text" class="form-control" width="80" id="emailSubject" aria-describedby="emailHelp" placeholder="Enter Subject">
+          <textarea rows="30" cols="80" style="resize: none; border-width: 1px" class="emailBody" placeholder="Email Body"></textarea>
+          <!-- <input type="text" style="height: 100px" class="form-control" id="emailBody" aria-describedby="emailHelp" placeholder="Enter Content"> -->
       </div>
     </div>
   </div>

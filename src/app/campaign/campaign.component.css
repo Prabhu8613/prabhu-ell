@@ -73,3 +73,13 @@ border: none;
 .row-options {
     padding: .7rem 0rem 0rem 0rem; 
 }
+
+.emailBody {
+
+}
+
+.emailBody:focus {
+    border-color: #ffd100;
+    box-shadow: 0 0 0 0.2rem #ffd100;
+    border-style: solid;
+}

@@ -12,6 +12,8 @@ export class CampaignComponent implements OnInit {
   constructor(private userService: UserService) { }
   users: User[] = [];
   selectedList: number = 0;
+  // This property will be bound to checkbox in table header
+  allItemsSelected: boolean = false;
 
   ngOnInit() {
     this.userService.getAdvantageData().subscribe((data: User[]) => this.users = data);
@@ -29,14 +31,12 @@ export class CampaignComponent implements OnInit {
     this.selectedRegions.splice(i, 1);
   }
 
-  // This property will be bound to checkbox in table header
-  allItemsSelected: boolean = false;
-
   // This executes when entity in table is checked
   selectItem() {
     console.log('sad' + this.users[0].isChecked);
     console.log('entered');
     // If any entity is not checked, then uncheck the "allItemsSelected" checkbox
+    this.selectedList = this.getSelectedUsersCount();
     for (var i = 0; i < this.users.length; i++) {
       if (!this.users[i].isChecked) {
         this.allItemsSelected = false;
@@ -45,7 +45,6 @@ export class CampaignComponent implements OnInit {
     }
     //If not the check the "allItemsSelected" checkbox
     this.allItemsSelected = true;
-    this.selectedList = this.getSelectedUsersCount();
   }
 
   // This executes when checkbox in table header is checked

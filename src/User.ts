@@ -7,5 +7,5 @@ interface User {
     age: number;
     gender: string;
     region: string;
-    isChecked?: boolean;
+    isChecked: boolean;
 }
