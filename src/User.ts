@@ -1,11 +1,16 @@
 interface User {
     firstName: string;
-    lastName: number;
+    lastName: string;
     email: string;
     phone: number;
-    city: string;
-    age: number;
-    gender: string;
-    region: string;
+    customerName: string;
+    customerEmailAddress: string;
+    customerAddress: string;
+    pinCode: string;
+    customerTelephone: number;
+    carSize: string;
+    carYear: number;
+    carMake: string;
+    carModel: string;
     isChecked: boolean;
 }

@@ -79,7 +79,8 @@ border: none;
 }
 
 .emailBody:focus {
-    border-color: #ffd100;
     box-shadow: 0 0 0 0.2rem #ffd100;
+    border-color: #ffd100;
+    border-width: 1px;
     border-style: solid;
 }
