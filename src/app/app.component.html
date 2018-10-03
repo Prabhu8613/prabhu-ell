@@ -1,9 +1,27 @@
 <app-header></app-header>
-<div class="row rowTab">
-    <div class="colsTab cursor"><a routerLink="/dashboard" routerLinkActive="active"><img src="src/assets/DashBoard.svg" height="30px" width="40px">DashBoard</a></div>
-    <div class="colsTab cursor"><a routerLink="/campaign"><img src="src/assets/Manage.svg" height="30px" width="40px">Manage Campaign</a></div>
-    <div class="colsTab cursor"><a routerLink="/contacts"><img src="src/assets/Contacts.svg" height="30px" width="40px">Contacts</a></div>
-    <div class="colsTab cursor"><a routerLink="/customer"><img src="src/assets/Customer.svg" height="30px" width="40px">Customer</a></div>
-    <div class="colsTab cursor"><a routerLink="/email"><img src="src/assets/Email.svg" height="30px" width="40px">Email</a></div>
+<div class="row rowTab" style="padding-left: 1rem">
+    <div class="colsTab cursor">
+        <img src="src/assets/DashBoard.svg" height="30px" width="40px">
+        <a [ngClass]="{'tab-clicked': tabClicked ==='Dashboard'}" class="tabs" routerLink="/dashboard" (click)="tabClicked = 'Dashboard'">DashBoard</a>
+    </div>
+    <div class="colsTab cursor">
+        <img src="src/assets/Manage.svg" height="30px" width="40px">
+        <a [ngClass]="{'tab-clicked': tabClicked ==='ManageCampaign'}" class="tabs" routerLink="/campaign" (click)="tabClicked = 'ManageCampaign'">
+            Manage Campaign</a>
+    </div>
+    <div class="colsTab cursor">
+        <img src="src/assets/Contacts.svg" height="30px" width="40px">
+        <a [ngClass]="{'tab-clicked': tabClicked ==='Contacts'}" class="tabs" (click)="tabClicked = 'Contacts'"
+            routerLink="/contacts">Contacts</a>
+    </div>
+    <div class="colsTab cursor">
+        <img src="src/assets/Customer.svg" height="30px" width="40px">
+        <a [ngClass]="{'tab-clicked': tabClicked === 'Customer'}" class="tabs" (click)="tabClicked = 'Customer'"
+            routerLink="/customer">Customer</a>
+    </div>
+    <div class="colsTab cursor">
+        <img src="src/assets/Email.svg" height="30px" width="40px">
+        <a [ngClass]="{'tab-clicked': tabClicked === 'Email'}" class="tabs" (click)="tabClicked = 'Email'" routerLink="/email">Email</a>
+    </div>
 </div>
 <router-outlet></router-outlet>
