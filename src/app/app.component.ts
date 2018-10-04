@@ -14,5 +14,6 @@ export class AppComponent implements OnInit {
   }
   ngOnInit(): void {
     this.tabClicked = 'Dashboard';
+    // this.route.snapshot.url.subscribe(params => console.log(params));
   }
 }
