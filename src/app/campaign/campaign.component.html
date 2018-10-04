@@ -319,7 +319,7 @@
         </div>
         <div>
           <div class="row" style="padding-left: 1rem;">
-            <a (click)="campaignTemplate = 'blank'">
+            <a (click)="templateClicked('blank')">
               <div style="padding: 1rem;padding-left:1rem;  text-align: center">
                 <div [ngClass]="{'campaign-design': campaignTemplate ==='blank'}" style="min-height: 136px; min-width: 112px;display: flex;flex-direction: column-reverse;"
                   class="campaign-design-border">
@@ -327,7 +327,7 @@
                 </div>
               </div>
             </a>
-            <a (click)="campaignTemplate = 'oneColumn'">
+            <a (click)="templateClicked('oneColumn')">
               <div style="padding: 1rem; text-align: center">
                 <div [ngClass]="{'campaign-design': campaignTemplate ==='oneColumn'}" class="campaign-design-border">
                   <img src="src/assets/1_column.png" style="padding-bottom: 1rem;" height="80px" width="80px">
@@ -357,10 +357,11 @@
       </div>
       <div style="padding: 1rem">
         <div align="center" class="cols" style="padding: 5rem;border-color: lightgray; border-style: solid">
-          <input type="text" class="form-control" width="80" id="emailSubject" aria-describedby="emailHelp" placeholder="Enter Subject">
+          <input type="text" class="form-control" width="60" id="emailSubject" aria-describedby="emailHelp" [(ngModel)]="emailSubject"
+            placeholder="Enter Subject">
           <br>
-          <textarea rows="15" cols="85" style="resize: none; border-width: 1px; border-radius: 3px" class="form-control"
-            placeholder="Email Body"></textarea>
+          <textarea rows="10" cols="65" style="resize: none; border-width: 1px; border-radius: 3px" class="form-control"
+            [(ngModel)]="emailBody" placeholder="Email Body"></textarea>
         </div>
       </div>
       <div class="row" style="padding: 1rem">
@@ -379,58 +380,61 @@
           </div>
         </div>
       </div>
-      <div class="row" style="padding-top: 1rem">
-        <div class="col-sm-4" style="padding-top: 1rem">
-          Choose template for your follow-up email
+      <div *ngIf="followUpEmailCounter > 0">
+        <div class="row" style="padding-top: 1rem">
+          <div class="col-sm-4" style="padding-top: 1rem">
+            Choose template for your follow-up email
+          </div>
+          <div>
+            <div class="row" style="padding-left: 1rem;">
+              <a (click)="campaignFollowUpTemplate = 'blank'">
+                <div style="padding: 1rem;padding-left:1rem;  text-align: center">
+                  <div [ngClass]="{'campaign-design': campaignFollowUpTemplate ==='blank'}" style="min-height: 136px; min-width: 112px;display: flex;flex-direction: column-reverse;"
+                    class="campaign-design-border">
+                    <div>Blank</div>
+                  </div>
+                </div>
+              </a>
+              <a (click)="campaignFollowUpTemplate = 'oneColumn'">
+                <div style="padding: 1rem; text-align: center">
+                  <div [ngClass]="{'campaign-design': campaignFollowUpTemplate ==='oneColumn'}" class="campaign-design-border">
+                    <img src="src/assets/1_column.png" style="padding-bottom: 1rem;" height="80px" width="80px">
+                    <div> 1 Column</div>
+                  </div>
+                </div>
+              </a>
+              <a (click)="campaignFollowUpTemplate = 'oneColumnFullWidth'">
+                <div style="padding: 1rem; text-align: center">
+                  <div [ngClass]="{'campaign-design': campaignFollowUpTemplate ==='oneColumnFullWidth'}" class="campaign-design-border">
+                    <img src="src/assets/1_column_full_width.png" height="55px" width="70px" style="padding-bottom: 1rem;">
+                    <div> 1 Column <br>
+                      Full Width</div>
+                  </div>
+                </div>
+              </a>
+              <a (click)="campaignFollowUpTemplate = 'oneToTwoColumn'">
+                <div style="padding: 1rem; text-align: center">
+                  <div [ngClass]="{'campaign-design': campaignFollowUpTemplate ==='oneToTwoColumn'}" class="campaign-design-border">
+                    <img src="src/assets/1_2_column.png" height="80px" width="80px">
+                    <div> 1:2:1 columns</div>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
         </div>
-        <div>
-          <div class="row" style="padding-left: 1rem;">
-            <a (click)="campaignFollowUpTemplate = 'blank'">
-              <div style="padding: 1rem;padding-left:1rem;  text-align: center">
-                <div [ngClass]="{'campaign-design': campaignFollowUpTemplate ==='blank'}" style="min-height: 136px; min-width: 112px;display: flex;flex-direction: column-reverse;"
-                  class="campaign-design-border">
-                  <div>Blank</div>
-                </div>
-              </div>
-            </a>
-            <a (click)="campaignFollowUpTemplate = 'oneColumn'">
-              <div style="padding: 1rem; text-align: center">
-                <div [ngClass]="{'campaign-design': campaignFollowUpTemplate ==='oneColumn'}" class="campaign-design-border">
-                  <img src="src/assets/1_column.png" style="padding-bottom: 1rem;" height="80px" width="80px">
-                  <div> 1 Column</div>
-                </div>
-              </div>
-            </a>
-            <a (click)="campaignFollowUpTemplate = 'oneColumnFullWidth'">
-              <div style="padding: 1rem; text-align: center">
-                <div [ngClass]="{'campaign-design': campaignFollowUpTemplate ==='oneColumnFullWidth'}" class="campaign-design-border">
-                  <img src="src/assets/1_column_full_width.png" height="55px" width="70px" style="padding-bottom: 1rem;">
-                  <div> 1 Column <br>
-                    Full Width</div>
-                </div>
-              </div>
-            </a>
-            <a (click)="campaignFollowUpTemplate = 'oneToTwoColumn'">
-              <div style="padding: 1rem; text-align: center">
-                <div [ngClass]="{'campaign-design': campaignFollowUpTemplate ==='oneToTwoColumn'}" class="campaign-design-border">
-                  <img src="src/assets/1_2_column.png" height="80px" width="80px">
-                  <div> 1:2:1 columns</div>
-                </div>
-              </div>
-            </a>
+        <div style="padding: 1rem" *ngIf="campaignFollowUpTemplate != null || campaignFollowUpTemplate != ''">
+          <div align="center" class="cols" style="padding: 5rem;border-color: lightgray; border-style: solid">
+            <input type="text" class="form-control" width="60" id="emailSubject" aria-describedby="emailHelp"
+              placeholder="Enter Subject">
+            <br>
+            <textarea rows="10" cols="65" style="resize: none; border-width: 1px; border-radius: 3px" class="form-control"
+              placeholder="Email Body"></textarea>
           </div>
         </div>
       </div>
-      <div style="padding: 1rem" *ngIf="campaignFollowUpTemplate != null || campaignFollowUpTemplate != ''">
-        <div align="center" class="cols" style="padding: 5rem;border-color: lightgray; border-style: solid">
-          <input type="text" class="form-control" width="80" id="emailSubject" aria-describedby="emailHelp" placeholder="Enter Subject">
-          <br>
-          <textarea rows="15" cols="85" style="resize: none; border-width: 1px; border-radius: 3px" class="form-control"
-            placeholder="Email Body"></textarea>
-        </div>
-      </div>
       <div class="row">
-        <div class="col-sm-4" align="left" style="padding: 2rem"> <button class="btn btn-light">
+        <div class="col-sm-4" align="left" style="padding: 2rem"> <button class="btn btn-light" (click)="selectedStep = 1">
             < Go Back</button> </div> <div class="col-sm-8" align="right" style="padding: 2rem"><button class="btn btn-warning btn-lg"
                 (click)="selectedStep = 3">Confirm
                 and Proceed to Step 3</button></div>
@@ -448,7 +452,7 @@
             <label for="exampleInputAmount2" style="padding-right: 6rem">First Email </label>
             <input type="date" class="form-control" placeholder="Datepicker" />
           </div>
-          <div class="form-group" style="padding-right: 6rem">
+          <div *ngIf="followUpEmailCounter > 0" class="form-group" style="padding-right: 6rem">
             <label for="exampleInputAmount2" style="padding-right: 6rem">Follow Up Email 1 </label>
             <input type="date" class="form-control" placeholder="Datepicker" />
           </div>
@@ -458,8 +462,9 @@
         <h5>2. Test your Campaign</h5>
       </div>
       <div class="row row-options">
-        <div class="col-sm-4"><input type="text" class="form-control" placeholder="Enter Email Address"></div>
-        <div class="col-sm-4"><button class="btn btn-light">Send Test Email</button></div>
+        <div class="col-sm-4"><input type="text" class="form-control" [(ngModel)]="testEmail" value="alantiredemo@outlook.com"
+            placeholder="Enter Email Address"></div>
+        <div class="col-sm-4"><button class="btn btn-light" (click)="sendEmail()">Send Test Email</button></div>
       </div>
       <div class="row row-options">
         <h5>3. Confirm and run your campaign</h5>
@@ -475,9 +480,15 @@
           <label class="form-check-label" for="inlineRadio2">No</label>
         </div>
       </div>
+      <!-- <button class="btn btn-light" (click)="selectedStep = 2">
+        < Go Back</button> -->
       <div align="center" class="row-options">
-        <button class="btn btn-warning btn-lg" [disabled]="isButtonDisabled()">Confirm and Run Campaign</button>
+        <button class="btn btn-warning btn-lg" [disabled]="isButtonDisabled()" (click)="selectedStep = 4">Confirm and
+          Run Campaign</button>
       </div>
+    </div>
+    <div *ngIf="selectedStep === 4" align="center">
+      <h3>Success!!! Campaign is Running</h3>
     </div>
   </div>
 </div>

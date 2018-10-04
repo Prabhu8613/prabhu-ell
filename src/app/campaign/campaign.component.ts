@@ -1,6 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from './user-service';
 
+const emailContent: string = `
+Hi,
+Alan tires is offering a flat 20% discount for winter tire products. Discount is applicable across leading brands including Pirelli, Bridgestone, CEAT, Yokohoma. Visit our website to learn more.
+Visit our stores between 20th October to 31st October 2018 to avail the discount.
+Regards,
+Alan`;
+
+const emailHtml: string = `<p>Hi,</p>
+
+<p>Alan tires is offering a flat 20% discount for winter tire products. Discount is applicable across leading brands including Pirelli, Bridgestone, CEAT, Yokohoma. <br/>
+Visit our <a href="http://yell.com" target="_blank">website</a> to learn more.</p>
+
+<p>Visit our stores between 20th October to 31st October 2018 to avail the discount.</p>
+
+<p>Regards, Alan</p>
+
+<p>Click <a href="http://yell.com" target="_blank">here</a> to opt out of mailing list for promotions and sales.</p>`;
+
 @Component({
   selector: 'app-campaign',
   templateUrl: './campaign.component.html',
@@ -23,7 +41,9 @@ export class CampaignComponent implements OnInit {
   followUpEmailCounter: number = 0;
   isEmailReceived: string = "false";
   selectedStep: number;
-
+  emailSubject: string;
+  emailBody: string;
+  testEmail: string = 'alantiredemo@outlook.com';
 
   ngOnInit() {
     this.userService.getAdvantageData().subscribe((data: User[]) => this.users = data);
@@ -173,5 +193,25 @@ export class CampaignComponent implements OnInit {
     if (this.isEmailReceived === 'true')
       return false;
     return true;
+  }
+
+  templateClicked(template) {
+    this.campaignTemplate = template;
+    if (template === 'blank') {
+      this.emailSubject = null;
+      this.emailBody = null;
+    } if (template === 'oneColumn') {
+      this.emailSubject = 'Campaign Email!!!';
+      this.emailBody = emailContent;
+    }
+  }
+
+
+  sendEmail() {
+    console.log("inside if");
+    console.log("email body" + emailHtml);
+    console.log("email body" + this.emailSubject);
+    console.log("email body" + this.testEmail);
+    this.userService.sendEmail(this.emailSubject, emailHtml, this.testEmail);
   }
 }
