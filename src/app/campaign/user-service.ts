@@ -6,6 +6,8 @@ import { map } from 'rxjs/operators';
 @Injectable()
 export class UserService {
 
+    public selectedTab: string;
+
     constructor(private http: Http) { }
 
     getAdvantageData(): Observable<User[]> {

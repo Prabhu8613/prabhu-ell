@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -8,12 +8,18 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class AppComponent implements OnInit {
   title = 'yell-campaign';
-  tabClicked: string;
-  constructor(private route: ActivatedRoute) {
-    console.log(route);
-  }
+  tabClicked: string = 'dashboard';
+
+  constructor(private router: Router) { }
   ngOnInit(): void {
     this.tabClicked = 'Dashboard';
-    // this.route.snapshot.url.subscribe(params => console.log(params));
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd && typeof event.url !== "undefined") {
+        console.log(event.url.substring(1));
+        let tabClicked1 = event.url.substring(1);
+        this.tabClicked = tabClicked1;
+      }
+    });
   }
+
 }

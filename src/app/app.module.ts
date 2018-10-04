@@ -12,7 +12,6 @@ import { ContactsComponent } from './contacts/contacts.component';
 import { CustomerComponent } from './customer/customer.component';
 import { EmailComponent } from './email/email.component';
 import { RouterModule, Routes } from '@angular/router';
-import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 const appRoutes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
@@ -20,7 +19,7 @@ const appRoutes: Routes = [
   { path: 'contacts', component: ContactsComponent },
   { path: 'customer', component: CustomerComponent },
   { path: 'email', component: EmailComponent },
-  { path: '', component: DashboardComponent }  
+  { path: '', component: DashboardComponent }
 ];
 @NgModule({
   declarations: [
@@ -37,7 +36,7 @@ const appRoutes: Routes = [
     HttpModule,
     FormsModule,
     RouterModule.forRoot(appRoutes),
-    BsDatepickerModule
+    // CarouselModule
   ],
   providers: [UserService],
   bootstrap: [AppComponent]

@@ -1,32 +1,32 @@
 <app-header></app-header>
 <div class="row rowTab" style="padding-left: 1rem">
     <div class="colsTab cursor">
-        <img class="change-my-color" height="30px" width="30px" *ngIf="tabClicked ==='Dashboard'" src="src/assets/DashBoard.svg">
-        <img class="change-my-color" height="30px" width="30px" *ngIf="tabClicked !='Dashboard'" src="src/assets/DashBoard-grey.svg">
-        <a [ngClass]="{'tab-clicked': tabClicked ==='Dashboard'}" class="tabs" [routerLink]="['/dashboard']" (click)="tabClicked = 'Dashboard'">DashBoard</a>
+        <img class="change-my-color" height="30px" width="30px" *ngIf="tabClicked ==='dashboard'" src="src/assets/DashBoard.svg">
+        <img class="change-my-color" height="30px" width="30px" *ngIf="tabClicked !='dashboard'" src="src/assets/DashBoard-grey.svg">
+        <a [ngClass]="{'tab-clicked': tabClicked ==='dashboard'}" class="tabs" [routerLink]="['/dashboard']" (click)="tabClicked = 'dashboard'">DashBoard</a>
     </div>
     <div class="colsTab cursor">
-        <img class="change-my-color" height="30px" width="30px" *ngIf="tabClicked ==='ManageCampaign'" src="src/assets/Manage.svg">
-        <img class="change-my-color" height="30px" width="30px" *ngIf="tabClicked !=='ManageCampaign'" src="src/assets/grey-Manage.svg">
-        <a [ngClass]="{'tab-clicked': tabClicked ==='ManageCampaign'}" class="tabs" [routerLink]="['/campaign']" (click)="tabClicked = 'ManageCampaign'">
+        <img class="change-my-color" height="30px" width="30px" *ngIf="tabClicked ==='campaign'" src="src/assets/Manage.svg">
+        <img class="change-my-color" height="30px" width="30px" *ngIf="tabClicked !=='campaign'" src="src/assets/grey-Manage.svg">
+        <a [ngClass]="{'tab-clicked': tabClicked ==='campaign'}" class="tabs" [routerLink]="['/campaign']" (click)="tabClicked = 'ManageCampaign'">
             Manage Campaign</a>
     </div>
     <div class="colsTab cursor">
-        <img class="change-my-color" height="30px" width="30px" *ngIf="tabClicked ==='Contacts'" src="src/assets/Contacts.svg">
-        <img class="change-my-color" height="30px" width="30px" *ngIf="tabClicked !=='Contacts'" src="src/assets/Contacts-grey.svg">
-        <a [ngClass]="{'tab-clicked': tabClicked ==='Contacts'}" class="tabs" (click)="tabClicked = 'Contacts'"
+        <img class="change-my-color" height="30px" width="30px" *ngIf="tabClicked ==='contacts'" src="src/assets/Contacts.svg">
+        <img class="change-my-color" height="30px" width="30px" *ngIf="tabClicked !=='contacts'" src="src/assets/Contacts-grey.svg">
+        <a [ngClass]="{'tab-clicked': tabClicked ==='contacts'}" class="tabs" (click)="tabClicked = 'contacts'"
             [routerLink]="['/contacts']">Contacts</a>
     </div>
     <div class="colsTab cursor">
-        <img class="change-my-color" height="30px" width="30px" *ngIf="tabClicked ==='Customer'" src="src/assets/Customer.svg">
-        <img class="change-my-color" height="30px" width="30px" *ngIf="tabClicked !=='Customer'" src="src/assets/Customer-grey.svg">
-        <a [ngClass]="{'tab-clicked': tabClicked === 'Customer'}" class="tabs" (click)="tabClicked = 'Customer'"
+        <img class="change-my-color" height="30px" width="30px" *ngIf="tabClicked ==='customer'" src="src/assets/Customer.svg">
+        <img class="change-my-color" height="30px" width="30px" *ngIf="tabClicked !=='customer'" src="src/assets/Customer-grey.svg">
+        <a [ngClass]="{'tab-clicked': tabClicked === 'customer'}" class="tabs" (click)="tabClicked = 'customer'"
             [routerLink]="['/customer']">Customer</a>
     </div>
     <div class="colsTab cursor">
-        <img class="change-my-color" height="30px" width="30px" *ngIf="tabClicked ==='Email'" src="src/assets/Email.svg">
-        <img class="change-my-color" height="30px" width="30px" *ngIf="tabClicked !=='Email'" src="src/assets/Email-grey.svg">
-        <a [ngClass]="{'tab-clicked': tabClicked === 'Email'}" class="tabs" (click)="tabClicked = 'Email'" [routerLink]="['/email']">Email</a>
+        <img class="change-my-color" height="30px" width="30px" *ngIf="tabClicked ==='email'" src="src/assets/Email.svg">
+        <img class="change-my-color" height="30px" width="30px" *ngIf="tabClicked !=='email'" src="src/assets/Email-grey.svg">
+        <a [ngClass]="{'tab-clicked': tabClicked === 'email'}" class="tabs" (click)="tabClicked = 'email'" [routerLink]="['/email']">Email</a>
     </div>
 </div>
 <router-outlet></router-outlet>
