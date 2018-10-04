@@ -8,27 +8,61 @@ import { UserService } from './user-service';
 })
 export class CampaignComponent implements OnInit {
 
-  selectedRegions: any = [];
+  selectedRegions: string[] = [];
   constructor(private userService: UserService) { }
   users: User[] = [];
   selectedList: number = 0;
   // This property will be bound to checkbox in table header
   allItemsSelected: boolean = false;
+  selectedVehicleYear: number[] = [];
+  selectedVehicleMake: string[] = [];
+  selectedVehicleModel: string[] = [];
+  campaignType: string;
+  campaignTemplate: string;
+  campaignFollowUpTemplate: string;
+  followUpEmailCounter: number = 0;
+  isEmailReceived: string = "false";
+  selectedStep: number;
+
 
   ngOnInit() {
     this.userService.getAdvantageData().subscribe((data: User[]) => this.users = data);
+    this.selectedStep = 0;
+    this.campaignType = 'email';
+    this.campaignTemplate = 'blank';
   }
 
   onItemChange(value: string) {
     console.log(value);
     if (value != 'Please Select' && this.selectedRegions.indexOf(value) === -1) {
       this.selectedRegions.push(value);
+      this.users.filter(user => user.customerAddress === value).forEach(element => {
+        element.isChecked = true;
+      });
+      console.log("sdasda " + this.users.filter(user => user.customerAddress === value).length);
     }
+    this.selectedList = this.getSelectedUsersCount();
     console.log(this.selectedRegions.length);
   }
 
   deleteItem(i) {
+    console.log(this.selectedRegions[i]);
+    this.users.filter(user => user.customerAddress === this.selectedRegions[i]).forEach(element => {
+      element.isChecked = false;
+    });
+    this.selectedList = this.getSelectedUsersCount();
     this.selectedRegions.splice(i, 1);
+  }
+
+
+  checked(e, checkbox: string) {
+    console.log("checked " + checkbox);
+    for (let i = 0; i < this.users.length; i++) {
+      if (this.users[i].carSize === checkbox) {
+        this.users[i].isChecked = e.target.checked;
+      }
+    }
+    this.selectedList = this.getSelectedUsersCount();
   }
 
   // This executes when entity in table is checked
@@ -37,7 +71,7 @@ export class CampaignComponent implements OnInit {
     console.log('entered');
     // If any entity is not checked, then uncheck the "allItemsSelected" checkbox
     this.selectedList = this.getSelectedUsersCount();
-    for (var i = 0; i < this.users.length; i++) {
+    for (let i = 0; i < this.users.length; i++) {
       if (!this.users[i].isChecked) {
         this.allItemsSelected = false;
         return;
@@ -62,6 +96,82 @@ export class CampaignComponent implements OnInit {
     return result.length;
   }
 
+  vehicleYear(input: string) {
+    console.log(input);
+    let value = parseInt(input);
+    if (input != 'Select Year' && this.selectedVehicleYear.indexOf(value) === -1) {
+      this.selectedVehicleYear.push(value);
+      this.users.filter(user => user.carYear === value).forEach(element => {
+        if (element.carYear === value) {
+          element.isChecked = true;
+        }
+      });
+      console.log("sdasda " + this.users.filter(user => user.carYear === value).length);
+    }
+    this.selectedList = this.getSelectedUsersCount();
+    console.log(this.selectedVehicleYear.length);
+  }
 
+  deleteYear(i: number) {
+    console.log(this.selectedVehicleYear[i]);
+    this.users.filter(user => user.carYear === this.selectedVehicleYear[i]).forEach(element => {
+      element.isChecked = false;
+    });
+    this.selectedList = this.getSelectedUsersCount();
+    this.selectedVehicleYear.splice(i, 1);
+  }
 
+  vehicleMake(value: string) {
+    console.log(parseInt(value));
+    if (value != 'Select Year' && this.selectedVehicleMake.indexOf(value) === -1) {
+      this.selectedVehicleMake.push(value);
+      for (let i = 0; i < this.users.length; i++) {
+        if (this.users[i].carMake === value) {
+          this.users[i].isChecked = true;
+        }
+      }
+      console.log("sdasda " + this.users.filter(user => user.carMake === value).length);
+    }
+    this.selectedList = this.getSelectedUsersCount();
+    console.log(this.selectedVehicleMake.length);
+  }
+
+  deleteMake(i) {
+    console.log(this.selectedVehicleMake[i]);
+    this.users.filter(user => user.carMake === this.selectedVehicleMake[i]).forEach(element => {
+      element.isChecked = false;
+    });
+    this.selectedList = this.getSelectedUsersCount();
+    this.selectedVehicleMake.splice(i, 1);
+  }
+
+  vehicleModel(value: string) {
+    console.log(value);
+    if (value != 'Select Year' && this.selectedVehicleModel.indexOf(value) === -1) {
+      this.selectedVehicleModel.push(value);
+      this.users.filter(user => user.carModel === value).forEach(element => {
+        if (element.carModel === value) {
+          element.isChecked = true;
+        }
+      });
+      console.log("sdasda " + this.users.filter(user => user.carModel === value).length);
+    }
+    this.selectedList = this.getSelectedUsersCount();
+    console.log(this.selectedVehicleModel.length);
+  }
+
+  deleteModel(i) {
+    console.log(this.selectedVehicleModel[i]);
+    this.users.filter(user => user.carModel === this.selectedVehicleModel[i]).forEach(element => {
+      element.isChecked = false;
+    });
+    this.selectedList = this.getSelectedUsersCount();
+    this.selectedVehicleModel.splice(i, 1);
+  }
+
+  isButtonDisabled() {
+    if (this.isEmailReceived === 'true')
+      return false;
+    return true;
+  }
 }

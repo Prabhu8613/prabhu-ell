@@ -70,6 +70,12 @@ background-color: lightgrey;
 border: none;
 }
 
+btn-circle-active {
+    background-color: #ffd100;
+    border-color: #ffd100;
+    border-width: 3px;
+}
+
 .row-options {
     padding: .7rem 0rem 0rem 0rem; 
 }
@@ -83,4 +89,39 @@ border: none;
     border-color: #ffd100;
     border-width: 1px;
     border-style: solid;
+}
+
+.img-with-text {
+    text-align: justify;
+    width: 100px;
+}
+
+.img-with-text img {
+    display: block;
+    margin: 0 auto;
+}
+
+.campaign-design {
+    background-color: #ffd100;
+}
+
+.campaign-design-border {
+    box-shadow: 0.1rem 0.1rem 0.1rem 0.1rem lightgray;
+    cursor: pointer;
+    padding: 1rem;
+}
+
+.disableClick{
+    pointer-events: none;
+}
+
+
+.plusMinusButton {
+    cursor: pointer;
+    padding: 5px 7.5px;
+    border: 1px;
+    border-style: solid;
+    border-color: lightgray;
+    font-weight: 700;
+    box-shadow: 0 0 0 0.1rem lightgray;
 }

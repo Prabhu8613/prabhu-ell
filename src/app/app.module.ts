@@ -12,6 +12,7 @@ import { ContactsComponent } from './contacts/contacts.component';
 import { CustomerComponent } from './customer/customer.component';
 import { EmailComponent } from './email/email.component';
 import { RouterModule, Routes } from '@angular/router';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 const appRoutes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
@@ -35,7 +36,8 @@ const appRoutes: Routes = [
     BrowserModule,
     HttpModule,
     FormsModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    BsDatepickerModule
   ],
   providers: [UserService],
   bootstrap: [AppComponent]
