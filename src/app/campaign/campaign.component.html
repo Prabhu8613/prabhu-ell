@@ -479,13 +479,22 @@
           <input class="form-check-input" type="radio" name="inlineRadioOptions" [(ngModel)]="isEmailReceived" value="false">
           <label class="form-check-label" for="inlineRadio2">No</label>
         </div>
-      </div>
-      <!-- <button class="btn btn-light" (click)="selectedStep = 2">
-        < Go Back</button> -->
-      <div align="center" class="row-options">
+      </div> 
+<!--	<div class="row">
+     <div class="col-sm-8" align="left" style="padding: 2rem"> <button class="btn btn-light" (click)="selectedStep = 2">
+            < Go Back</button> </div>
+      <div align="right" class="col-sm-8">
         <button class="btn btn-warning btn-lg" [disabled]="isButtonDisabled()" (click)="selectedStep = 4">Confirm and
           Run Campaign</button>
       </div>
+     </div>-->
+	<div class="row">
+        <div class="col-sm-4" align="left" style="padding: 2rem"> <button class="btn btn-light" (click)="selectedStep = 2">
+            < Go Back</button> </div> <div class="col-sm-8" align="right" style="padding: 2rem"><button class="btn btn-warning btn-lg" [disabled]="isButtonDisabled()"
+                (click)="selectedStep = 4">Confirm and
+          Run Campaign</button></div>
+      </div>
+
     </div>
     <div *ngIf="selectedStep === 4" align="center">
       <h3>Success!!! Campaign is Running</h3>
