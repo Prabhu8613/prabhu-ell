@@ -80,10 +80,6 @@ btn-circle-active {
     padding: .7rem 0rem 0rem 0rem; 
 }
 
-.emailBody {
-
-}
-
 .emailBody:focus {
     box-shadow: 0 0 0 0.2rem #ffd100;
     border-color: #ffd100;
@@ -124,4 +120,8 @@ btn-circle-active {
     border-color: lightgray;
     font-weight: 700;
     box-shadow: 0 0 0 0.1rem lightgray;
+}
+
+.row-options-step3 {
+padding-top: 2rem;
 }

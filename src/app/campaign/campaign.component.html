@@ -9,24 +9,24 @@
       </tr>
       <tr>
         <td style="width: 33%">
-          <h6>1. Choose your target audience</h6>
+          <h6>Step 1. Choose your target audience</h6>
         </td>
         <td style="width: 33%">
-          <h6>2. Choose campaign type and create content</h6>
+          <h6>Step 2. Choose campaign type and create content</h6>
         </td>
         <td style="width: 33%">
-          <h6>3. Schedule, Test and Run your campaign</h6>
+          <h6>Step 3. Schedule, Test and Run your campaign</h6>
         </td>
       </tr>
     </table>
 
-    <h5 style="padding: 5% 0%"> We want you to focus on your customers and spend less time setting up Marketing
+    <p style="padding: 5% 0%"> We want you to focus on your customers and spend less time setting up Marketing
       Campaigns. Yell CRM campaigns
       features automated URL tracker to track your customer behavior, automated opt out subscription list and
       intelligent
-      reports that help you run successful campaigns in a few clicks.</h5>
+      reports that help you run successful campaigns in a few clicks.</p>
 
-    <button class="btn btn-warning" (click)="selectedStep=1">Let’s get started with your first Campaign</button>
+    <button class="btn btn-warning" (click)="selectedStep=1"> <b>Let’s get started with your first Campaign</b></button>
   </div>
 
   <div *ngIf="selectedStep > 0">
@@ -98,13 +98,119 @@
           <div class="cols col-sm-12">Choose your target audience based on Demographics <b> ({{ selectedList }}
               Selected)</b></div>
         </div>
-        <div class="row row-options">
+        <form>
+          <div class="form-group row row-options">
+            <label class="col-sm-2">Region</label>
+            <div class="col-sm-3">
+              <select class="form-control form-control-sm" id="region" (change)="onItemChange($event.target.value)">
+                <option selected>Please Select</option>
+                <option>Earley</option>
+                <option>Norcot</option>
+                <option>Calcot</option>
+                <option>Whitley</option>
+              </select>
+              <div class="row" *ngIf="selectedRegions.length > 0">
+                <b>Selected:</b>
+                <div *ngFor="let item of selectedRegions; let i1 = index" style="padding-left: .7rem">
+                  {{ item }} <a class="cursor" (click)="deleteItem(i1)"><img src="src/assets/delete.png" alt="delete"
+                      height="15px" width="15px"> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+        <div class="form-group row">
+          <label for="staticEmail" class="col-sm-2">Vehicle Size</label>
+          <div class="col-sm-10">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" (change)="checked($event, 'Sedan')">
+              <label class="form-check-label" for="inlineCheckbox1">Sedan</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" (change)="checked($event, 'Hatchback')">
+              <label class="form-check-label" for="inlineCheckbox2">HatchBack</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" (change)="checked($event, 'SUV')">
+              <label class="form-check-label" for="inlineCheckbox3">SUV</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" (change)="checked($event, 'Minibus')">
+              <label class="form-check-label" for="inlineCheckbox3">Mini Bus</label>
+            </div>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="staticEmail" class="col-sm-2">Vehicle Type</label>
+          <div class="col-sm-10">
+            <div class="row">
+              <div class="col-sm-3" style="padding-right: 1rem;">
+                <select class="form-control form-control-sm" (change)="vehicleYear($event.target.value)">
+                  <option selected>Select Year</option>
+                  <option>2005</option>
+                  <option>2009</option>
+                  <option>2010</option>
+                  <option>2012</option>
+                  <option>2013</option>
+                  <option>2015</option>
+                  <option>2016</option>
+                  <option>2017</option>
+                </select>
+              </div>
+              <div class="col-sm-3" style="padding-right: 1rem;">
+                <select class="form-control form-control-sm" (change)="vehicleMake($event.target.value)">
+                  <option selected>Select Make</option>
+                  <option>Dodge</option>
+                  <option>Ford</option>
+                  <option>Hyundai</option>
+                  <option>Suzuki</option>
+                  <option>Toyota</option>
+                  <option>Vauxhall</option>
+                </select>
+              </div>
+              <div class="col-sm-3" style="padding-right: 1rem;">
+                <select class="form-control form-control-sm" (change)="vehicleModel($event.target.value)">
+                  <option selected>Select Model</option>
+                  <option>Ciaz</option>
+                  <option>Corolla</option>
+                  <option>Corsa</option>
+                  <option>Endeavour </option>
+                  <option>Fiesta</option>
+                  <option>Grand Caravan</option>
+                  <option>Grandland</option>
+                  <option>i10</option>
+                  <option>i20</option>
+                  <option>Tuscon</option>
+                </select>
+              </div>
+            </div>
+            <div class="row rowMenu" *ngIf="selectedVehicleYear.length > 0 || selectedVehicleMake.length > 0  || selectedVehicleModel.length > 0 ">
+              <b>Selected:</b>
+              <div *ngFor="let year of selectedVehicleYear; let yearIndex = index" style="padding-left: .7rem">
+                {{ year }} <a class="cursor" (click)="deleteYear(yearIndex)"><img src="src/assets/delete.png" alt="delete"
+                    height="15px" width="15px"> </a>
+              </div>
+              <div *ngFor="let make of selectedVehicleMake; let makeIndex = index" style="padding-left: .7rem">
+                {{ make }} <a class="cursor" (click)="deleteMake(makeIndex)"><img src="src/assets/delete.png" alt="delete"
+                    height="15px" width="15px"> </a>
+              </div>
+              <div *ngFor="let model of selectedVehicleModel; let modelIndex = index" style="padding-left: .7rem">
+                {{ model }} <a class="cursor" (click)="deleteModel(modelIndex)"><img src="src/assets/delete.png" alt="delete"
+                    height="15px" width="15px"> </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+        <!-- <div class="row row-options">
           <div class="col-sm-2">
             Region
           </div>
           <div class="col-sm-4">
             <div class="row">
-              <div class="col-sm-6" style="padding: 0">
+              <div class="col-sm-6" style="padding-left: 0">
                 <select class="form-control form-control-sm" (change)="onItemChange($event.target.value)">
                   <option selected>Please Select</option>
                   <option>Earley</option>
@@ -144,7 +250,7 @@
             </div>
           </div>
         </div>
-        <div class="row row-options">
+        <div class="row row-options" style="padding-top: 10px">
           <div class="col-sm-2">
             Vehicle Type
           </div>
@@ -206,10 +312,10 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
         <div class="row row-options">
-          <div class="col-sm-12" align="right" vertical-align="bottom">
-            <button class="btn btn-warning btn-lg" (click)="selectedStep=2">Choose and proceed to Step 2</button>
+          <div class="col-sm-12" align="right" style="padding-right: 0" vertical-align="bottom">
+            <button class="btn btn-warning btn-lg" (click)="selectedStep=2"><b>Choose and proceed to Step 2</b></button>
           </div>
         </div>
         <div class="row row-options">
@@ -436,8 +542,8 @@
       <div class="row">
         <div class="col-sm-4" align="left" style="padding: 2rem"> <button class="btn btn-light" (click)="selectedStep = 1">
             < Go Back</button> </div> <div class="col-sm-8" align="right" style="padding: 2rem"><button class="btn btn-warning btn-lg"
-                (click)="selectedStep = 3">Confirm
-                and Proceed to Step 3</button></div>
+                (click)="selectedStep = 3"><b>Confirm
+                  and Proceed to Step 3</b></button></div>
       </div>
     </div>
 
@@ -458,7 +564,7 @@
           </div>
         </div>
       </form>
-      <div class="row row-options">
+      <div class="row row-options-step3">
         <h5>2. Test your Campaign</h5>
       </div>
       <div class="row row-options">
@@ -466,11 +572,11 @@
             placeholder="Enter Email Address"></div>
         <div class="col-sm-4"><button class="btn btn-light" (click)="sendEmail()">Send Test Email</button></div>
       </div>
-      <div class="row row-options">
+      <div class="row row-options-step3">
         <h5>3. Confirm and run your campaign</h5>
       </div>
       <div class="row row-options">
-        <div class="col-sm-2"> Did you receive the email</div>
+        <div class="col-sm-3"> Did you receive the email</div>
         <div class="form-check form-check-inline">
           <input class="form-check-input" type="radio" name="inlineRadioOptions" [(ngModel)]="isEmailReceived" value="true">
           <label class="form-check-label" for="inlineRadio1">Yes</label>
@@ -479,20 +585,11 @@
           <input class="form-check-input" type="radio" name="inlineRadioOptions" [(ngModel)]="isEmailReceived" value="false">
           <label class="form-check-label" for="inlineRadio2">No</label>
         </div>
-      </div> 
-<!--	<div class="row">
-     <div class="col-sm-8" align="left" style="padding: 2rem"> <button class="btn btn-light" (click)="selectedStep = 2">
-            < Go Back</button> </div>
-      <div align="right" class="col-sm-8">
-        <button class="btn btn-warning btn-lg" [disabled]="isButtonDisabled()" (click)="selectedStep = 4">Confirm and
-          Run Campaign</button>
       </div>
-     </div>-->
-	<div class="row">
+      <div class="row row-options-step3">
         <div class="col-sm-4" align="left" style="padding: 2rem"> <button class="btn btn-light" (click)="selectedStep = 2">
-            < Go Back</button> </div> <div class="col-sm-8" align="right" style="padding: 2rem"><button class="btn btn-warning btn-lg" [disabled]="isButtonDisabled()"
-                (click)="selectedStep = 4">Confirm and
-          Run Campaign</button></div>
+            < Go Back</button> </div> <div class="col-sm-8" align="right" style="padding: 2rem"><button class="btn btn-warning btn-lg"
+                [disabled]="isButtonDisabled()" (click)="selectedStep = 4"><b>Confirm and Run Campaign</b></button></div>
       </div>
 
     </div>

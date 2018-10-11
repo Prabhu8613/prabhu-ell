@@ -1,32 +1,37 @@
 <app-header></app-header>
-<div class="row rowTab" style="padding-left: 1rem">
+<div class="row rowTab" style="padding-left: 1rem; padding-bottom: 1rem">
     <div class="colsTab cursor">
         <img class="change-my-color" height="30px" width="30px" *ngIf="tabClicked ==='dashboard'" src="src/assets/DashBoard.svg">
         <img class="change-my-color" height="30px" width="30px" *ngIf="tabClicked !='dashboard'" src="src/assets/DashBoard-grey.svg">
-        <a [ngClass]="{'tab-clicked': tabClicked ==='dashboard'}" class="tabs" [routerLink]="['/dashboard']" (click)="tabClicked = 'dashboard'">DashBoard</a>
+        <a class="tabs" [routerLink]="['/dashboard']" (click)="tabClicked = 'dashboard'">
+            <span [ngClass]="{'tab-clicked': tabClicked ==='dashboard'}">DashBoard</span>
+        </a>
     </div>
     <div class="colsTab cursor">
         <img class="change-my-color" height="30px" width="30px" *ngIf="tabClicked ==='campaign'" src="src/assets/Manage.svg">
         <img class="change-my-color" height="30px" width="30px" *ngIf="tabClicked !=='campaign'" src="src/assets/grey-Manage.svg">
-        <a [ngClass]="{'tab-clicked': tabClicked ==='campaign'}" class="tabs" [routerLink]="['/campaign']" (click)="tabClicked = 'ManageCampaign'">
-            Manage Campaign</a>
+        <a class="tabs" [routerLink]="['/campaign']" (click)="tabClicked = 'campaign'">
+            <span [ngClass]="{'tab-clicked': tabClicked ==='campaign'}">Manage Campaign</span></a>
     </div>
     <div class="colsTab cursor">
         <img class="change-my-color" height="30px" width="30px" *ngIf="tabClicked ==='contacts'" src="src/assets/Contacts.svg">
         <img class="change-my-color" height="30px" width="30px" *ngIf="tabClicked !=='contacts'" src="src/assets/Contacts-grey.svg">
-        <a [ngClass]="{'tab-clicked': tabClicked ==='contacts'}" class="tabs" (click)="tabClicked = 'contacts'"
-            [routerLink]="['/contacts']">Contacts</a>
+        <a class="tabs" (click)="tabClicked = 'contacts'"
+            [routerLink]="['/contacts']">
+            <span [ngClass]="{'tab-clicked': tabClicked ==='contacts'}">Contacts</span> </a>
     </div>
     <div class="colsTab cursor">
         <img class="change-my-color" height="30px" width="30px" *ngIf="tabClicked ==='customer'" src="src/assets/Customer.svg">
         <img class="change-my-color" height="30px" width="30px" *ngIf="tabClicked !=='customer'" src="src/assets/Customer-grey.svg">
-        <a [ngClass]="{'tab-clicked': tabClicked === 'customer'}" class="tabs" (click)="tabClicked = 'customer'"
-            [routerLink]="['/customer']">Customer</a>
+        <a class="tabs" (click)="tabClicked = 'customer'"
+            [routerLink]="['/customer']">
+            <span [ngClass]="{'tab-clicked': tabClicked ==='customer'}">Customer</span> </a>
     </div>
     <div class="colsTab cursor">
         <img class="change-my-color" height="30px" width="30px" *ngIf="tabClicked ==='email'" src="src/assets/Email.svg">
         <img class="change-my-color" height="30px" width="30px" *ngIf="tabClicked !=='email'" src="src/assets/Email-grey.svg">
-        <a [ngClass]="{'tab-clicked': tabClicked === 'email'}" class="tabs" (click)="tabClicked = 'email'" [routerLink]="['/email']">Email</a>
+        <a class="tabs" (click)="tabClicked = 'email'" [routerLink]="['/email']">
+            <span [ngClass]="{'tab-clicked': tabClicked ==='email'}">Email</span> </a>
     </div>
 </div>
 <router-outlet></router-outlet>
