@@ -23,6 +23,6 @@ export class UserService {
         let cpHeaders = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: cpHeaders });
         this.emailData = new Email(emailBody, emailSubject, emailAddress);
-        return this.http.post('http://ec2-54-242-101-181.compute-1.amazonaws.com:2001/campaign/sendEmailFor', JSON.stringify(this.emailData), options).subscribe(success => success.status);
+        return this.http.post('http://ec2-52-70-15-104.compute-1.amazonaws.com:2001/campaign/sendEmailFor', JSON.stringify(this.emailData), options).subscribe(success => success.status);
     }
 }
