@@ -25,3 +25,27 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+# Doker stuff
+
+
+#Build :
+
+sudo docker build -t crm-campaign-ux .
+
+#Push the image to docker :
+
+sudo docker login -u `username` -p `password`
+
+sudo docker tag crm-campaign-ux capstonetravelagency/crm-campaign-ux
+
+sudo docker push capstonetravelagency/crm-campaign-ux
+
+#Pull
+
+sudo docker pull capstonetravelagency/crm-campaign-ux
+
+# Run the container
+
+sudo docker run -it -p 4203:4203 capstonetravelagency/crm-campaign-ux
+
