@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from './user-service';
-
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
 const emailContent: string = `
 Hi,
 Alan tires is offering a flat 20% discount for winter tire products. Discount is applicable across leading brands including Pirelli, Bridgestone, CEAT, Yokohoma. Visit our website to learn more.
@@ -27,7 +27,7 @@ Visit our <a href="http://yell.com" target="_blank">website</a> to learn more.</
 export class CampaignComponent implements OnInit {
 
   selectedRegions: string[] = [];
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private http: Http) { }
   users: User[] = [];
   selectedList: number = 0;
   // This property will be bound to checkbox in table header
@@ -36,6 +36,7 @@ export class CampaignComponent implements OnInit {
   selectedVehicleMake: string[] = [];
   selectedVehicleModel: string[] = [];
   campaignType: string;
+  socialMediaPlatform: string;
   campaignTemplate: string;
   campaignFollowUpTemplate: string;
   followUpEmailCounter: number = 0;
@@ -44,12 +45,20 @@ export class CampaignComponent implements OnInit {
   emailSubject: string;
   emailBody: string;
   testEmail: string = 'alantiredemo@outlook.com';
+  uploadPickerCheck: string;
+  fbPostCaption: string;
+  //preview_img_urls: FileReader[] = [];
+  img_url: FileReader;
+  str_img: string;
+
+
 
   ngOnInit() {
     this.userService.getAdvantageData().subscribe((data: User[]) => this.users = data);
     this.selectedStep = 0;
     this.campaignType = 'email';
     this.campaignTemplate = 'blank';
+    this.uploadPickerCheck = "N";
   }
 
   onItemChange(value: string) {
@@ -206,6 +215,14 @@ export class CampaignComponent implements OnInit {
     }
   }
 
+  campaignTypeClicked(campaignType, socialMediaPlatform) {
+    this.campaignType = campaignType;
+    this.socialMediaPlatform = socialMediaPlatform;
+    if (campaignType === 'socialMedia') {
+
+    }
+  }
+
 
   sendEmail() {
     console.log("inside if");
@@ -214,4 +231,63 @@ export class CampaignComponent implements OnInit {
     console.log("email body" + this.testEmail);
     this.userService.sendEmail(this.emailSubject, emailHtml, this.testEmail);
   }
+
+  public convertFile(event: any) {
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+      reader.onload = (event: ProgressEvent) => {
+        this.img_url = (<FileReader>event.target).result;
+        this.str_img = this.img_url.toString().split(',')[1];
+        console.log("str_img: " + this.str_img);
+        this.uploadPickerCheck = "Y";
+      }
+      reader.readAsDataURL(event.target.files[0]);
+
+    }
+
+
+  };
+
+  public pad2(n) { return n < 10 ? '0' + n : n }
+
+  public postToFBWebService() {
+
+    var timestamp = new Date();
+
+    var strTimestamp = timestamp.getFullYear().toString() + this.pad2(timestamp.getMonth() + 1) + this.pad2(timestamp.getDate()) + this.pad2(timestamp.getHours()) + this.pad2(timestamp.getMinutes()) + this.pad2(timestamp.getSeconds()) + this.pad2(timestamp.getMilliseconds());
+
+    var body = '{' +
+      '"socialmediadata":{' +
+      '"facebookid":"e@mail.com",' +
+      '"whatsappid":"999999999",' +
+      '"googleplusid":"google@googleplus.com"' +
+      '},' +
+      '"media":{' +
+      '"caption":"' + this.fbPostCaption + '",' +
+      '"image":"' + this.str_img + '"' +
+      '},' +
+      '"marketingformdata":{' +
+      '"Favplayer":"xxx",' +
+      '"gender":"M",' +
+      '"age":"01-01-1990",' +
+      '"Location":"IND",' +
+      '"Team":"A",' +
+      '"seatnumber":"Q"' +
+      '},' +
+      '"uniqueidentifiers":{' +
+      '"timestamp":"' + strTimestamp + '",' +
+      '"gameid":"1",' +
+      '"deviceid":"crm-yell"' +
+      '}' +
+      '}'
+
+    console.log("posting JSON :" + body);
+    const url: string = "http://52.90.29.222:9001/input";
+
+    const headers = new Headers({ "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" });
+    const options = new RequestOptions({ headers });
+    return this.http.post(url, body, options).subscribe();
+
+  }
+
 }

@@ -20,16 +20,14 @@
       </tr>
     </table>
 
-    <p style="padding: 5% 0%"> We want you to focus on your customers and spend less time setting up Marketing
-      Campaigns. Yell CRM campaigns
-      features automated URL tracker to track your customer behavior, automated opt out subscription list and
-      intelligent
-      reports that help you run successful campaigns in a few clicks.</p>
+    <p style="padding: 5% 0%"> We want you to focus on your customers and spend less time setting up Marketing Campaigns. Yell CRM campaigns features
+      automated URL tracker to track your customer behavior, automated opt out subscription list and intelligent reports
+      that help you run successful campaigns in a few clicks.</p>
 
     <button class="btn btn-warning" (click)="selectedStep=1"> <b>Let’s get started with your first Campaign</b></button>
   </div>
 
-  <div *ngIf="selectedStep > 0">
+  <div *ngIf="selectedStep > 0 && selectedStep < 10">
     <h3>Create your campaign in 3 simple steps!</h3>
     <div class="stepwizard" style="padding: 2rem 0rem;">
       <div class="stepwizard-row setup-panel">
@@ -50,6 +48,35 @@
         <div class="stepwizard-step">
           <button class="btn btn-warning btn-circle" *ngIf="selectedStep === 3" disabled="true">3</button>
           <button class="btn btn-warning btn-circle btn-circle-active" *ngIf="selectedStep > 3" disabled="true">
+            <img src="src/assets/correct.svg" height="50px" width="50px"></button>
+          <button class="btn btn-warning btn-circle btn-circle-disabled" *ngIf="selectedStep < 3" disabled="true">3</button>
+          <p>Schedule, Test and Run <br> your campaign</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="selectedStep === 10">
+    <h3>Create your campaign in 3 simple steps!</h3>
+    <div class="stepwizard" style="padding: 2rem 0rem;">
+      <div class="stepwizard-row setup-panel">
+        <div class="stepwizard-step">
+          <button class="btn btn-warning btn-circle" *ngIf="selectedStep === 1" disabled="true">1</button>
+          <button class="btn btn-warning btn-circle btn-circle-active" *ngIf="selectedStep === 10" disabled="true">
+            <img src="src/assets/correct.svg" height="50px" width="50px"></button>
+          <button class="btn btn-warning btn-circle btn-circle-disabled" *ngIf="selectedStep > 20" disabled="true">1</button>
+          <p>Choose your target audience</p>
+        </div>
+        <div class="stepwizard-step">
+          <button class="btn btn-warning btn-circle" *ngIf="selectedStep === 2" disabled="true">2</button>
+          <button class="btn btn-warning btn-circle btn-circle-active" *ngIf="selectedStep === 10" disabled="true">
+            <img src="src/assets/correct.svg" height="50px" width="50px"></button>
+          <button class="btn btn-warning btn-circle btn-circle-disabled" *ngIf="selectedStep < 2" disabled="true">2</button>
+          <p>Choose campaign type and <br> create content</p>
+        </div>
+        <div class="stepwizard-step">
+          <button class="btn btn-warning btn-circle" *ngIf="selectedStep === 10" disabled="true">3</button>
+          <button class="btn btn-warning btn-circle btn-circle-active" *ngIf="selectedStep > 20" disabled="true">
             <img src="src/assets/correct.svg" height="50px" width="50px"></button>
           <button class="btn btn-warning btn-circle btn-circle-disabled" *ngIf="selectedStep < 3" disabled="true">3</button>
           <p>Schedule, Test and Run <br> your campaign</p>
@@ -385,13 +412,11 @@
                 </div>
               </div>
             </a>
-            <a (click)="campaignType = 'newsLetter'">
+            <a (click)="campaignTypeClicked('newsLetter')">
               <div style="padding: 1rem; text-align: center">
                 <div [ngClass]="{'campaign-design': campaignType ==='newsLetter'}" class="campaign-design-border">
-                  <img src="src/assets/newsLetter_campaing.svg" *ngIf="campaignType != 'newsLetter'" height="80px"
-                    width="80px">
-                  <img src="src/assets/newsLetter_campaing_white.svg" *ngIf="campaignType === 'newsLetter'" height="80px"
-                    width="80px">
+                  <img src="src/assets/newsLetter_campaing.svg" *ngIf="campaignType != 'newsLetter'" height="80px" width="80px">
+                  <img src="src/assets/newsLetter_campaing_white.svg" *ngIf="campaignType === 'newsLetter'" height="80px" width="80px">
                   <div> NewsLetter</div>
                 </div>
               </div>
@@ -405,13 +430,11 @@
                 </div>
               </div>
             </a>
-            <a (click)="campaignType = 'socialMedia'">
+            <a (click)="campaignTypeClicked('socialMedia')">
               <div style="padding: 1rem; text-align: center">
                 <div [ngClass]="{'campaign-design': campaignType ==='socialMedia'}" class="campaign-design-border">
-                  <img src="src/assets/socialMedia_campaign.svg" *ngIf="campaignType != 'socialMedia'" height="80px"
-                    width="80px">
-                  <img src="src/assets/socialMedia_campaign_white.svg" *ngIf="campaignType === 'socialMedia'" height="80px"
-                    width="80px">
+                  <img src="src/assets/socialMedia_campaign.svg" *ngIf="campaignType != 'socialMedia'" height="80px" width="80px">
+                  <img src="src/assets/socialMedia_campaign_white.svg" *ngIf="campaignType === 'socialMedia'" height="80px" width="80px">
                   <div> Social Media</div>
                 </div>
               </div>
@@ -419,108 +442,42 @@
           </div>
         </div>
       </div>
-      <div class="row" style="padding-top: 1rem">
-        <div class="col-sm-4" style="padding-top: 1rem">
-          Choose your Template
-        </div>
-        <div>
-          <div class="row" style="padding-left: 1rem;">
-            <a (click)="templateClicked('blank')">
-              <div style="padding: 1rem;padding-left:1rem;  text-align: center">
-                <div [ngClass]="{'campaign-design': campaignTemplate ==='blank'}" style="min-height: 136px; min-width: 112px;display: flex;flex-direction: column-reverse;"
-                  class="campaign-design-border">
-                  <div>Blank</div>
-                </div>
-              </div>
-            </a>
-            <a (click)="templateClicked('oneColumn')">
-              <div style="padding: 1rem; text-align: center">
-                <div [ngClass]="{'campaign-design': campaignTemplate ==='oneColumn'}" class="campaign-design-border">
-                  <img src="src/assets/1_column.png" style="padding-bottom: 1rem;" height="80px" width="80px">
-                  <div> 1 Column</div>
-                </div>
-              </div>
-            </a>
-            <a (click)="campaignTemplate = 'oneColumnFullWidth'">
-              <div style="padding: 1rem; text-align: center">
-                <div [ngClass]="{'campaign-design': campaignTemplate ==='oneColumnFullWidth'}" class="campaign-design-border">
-                  <img src="src/assets/1_column_full_width.png" height="55px" width="70px" style="padding-bottom: 1rem;">
-                  <div> 1 Column <br>
-                    Full Width</div>
-                </div>
-              </div>
-            </a>
-            <a (click)="campaignTemplate = 'oneToTwoColumn'">
-              <div style="padding: 1rem; text-align: center">
-                <div [ngClass]="{'campaign-design': campaignTemplate ==='oneToTwoColumn'}" class="campaign-design-border">
-                  <img src="src/assets/1_2_column.png" height="80px" width="80px">
-                  <div> 1:2:1 columns</div>
-                </div>
-              </div>
-            </a>
-          </div>
-        </div>
-      </div>
-      <div style="padding: 1rem">
-        <div align="center" class="cols" style="padding: 5rem;border-color: lightgray; border-style: solid">
-          <input type="text" class="form-control" width="60" id="emailSubject" aria-describedby="emailHelp" [(ngModel)]="emailSubject"
-            placeholder="Enter Subject">
-          <br>
-          <textarea rows="10" cols="65" style="resize: none; border-width: 1px; border-radius: 3px" class="form-control"
-            [(ngModel)]="emailBody" placeholder="Email Body"></textarea>
-        </div>
-      </div>
-      <div class="row" style="padding: 1rem">
-        <div class="col-sm-4">
-          Number of follow-up emails to be sent
-        </div>
-        <div class="col-sm-4">
-          <div class="row">
-            <a (click)="followUpEmailCounter != 0 ? followUpEmailCounter = followUpEmailCounter-1 : followUpEmailCounter = 0">
-              <div class="plusMinusButton"> - </div>
-            </a>
-            <div class="plusMinusButton"> {{ followUpEmailCounter }}</div>
-            <a (click)="followUpEmailCounter = followUpEmailCounter+1">
-              <div class="plusMinusButton">+</div>
-            </a>
-          </div>
-        </div>
-      </div>
-      <div *ngIf="followUpEmailCounter > 0">
+
+      <div id='email-details' *ngIf="campaignType === 'email'" align="center">
+
         <div class="row" style="padding-top: 1rem">
           <div class="col-sm-4" style="padding-top: 1rem">
-            Choose template for your follow-up email
+            Choose your Template
           </div>
           <div>
             <div class="row" style="padding-left: 1rem;">
-              <a (click)="campaignFollowUpTemplate = 'blank'">
+              <a (click)="templateClicked('blank')">
                 <div style="padding: 1rem;padding-left:1rem;  text-align: center">
-                  <div [ngClass]="{'campaign-design': campaignFollowUpTemplate ==='blank'}" style="min-height: 136px; min-width: 112px;display: flex;flex-direction: column-reverse;"
+                  <div [ngClass]="{'campaign-design': campaignTemplate ==='blank'}" style="min-height: 136px; min-width: 112px;display: flex;flex-direction: column-reverse;"
                     class="campaign-design-border">
                     <div>Blank</div>
                   </div>
                 </div>
               </a>
-              <a (click)="campaignFollowUpTemplate = 'oneColumn'">
+              <a (click)="templateClicked('oneColumn')">
                 <div style="padding: 1rem; text-align: center">
-                  <div [ngClass]="{'campaign-design': campaignFollowUpTemplate ==='oneColumn'}" class="campaign-design-border">
+                  <div [ngClass]="{'campaign-design': campaignTemplate ==='oneColumn'}" class="campaign-design-border">
                     <img src="src/assets/1_column.png" style="padding-bottom: 1rem;" height="80px" width="80px">
                     <div> 1 Column</div>
                   </div>
                 </div>
               </a>
-              <a (click)="campaignFollowUpTemplate = 'oneColumnFullWidth'">
+              <a (click)="campaignTemplate = 'oneColumnFullWidth'">
                 <div style="padding: 1rem; text-align: center">
-                  <div [ngClass]="{'campaign-design': campaignFollowUpTemplate ==='oneColumnFullWidth'}" class="campaign-design-border">
+                  <div [ngClass]="{'campaign-design': campaignTemplate ==='oneColumnFullWidth'}" class="campaign-design-border">
                     <img src="src/assets/1_column_full_width.png" height="55px" width="70px" style="padding-bottom: 1rem;">
-                    <div> 1 Column <br>
-                      Full Width</div>
+                    <div> 1 Column <br> Full Width</div>
                   </div>
                 </div>
               </a>
-              <a (click)="campaignFollowUpTemplate = 'oneToTwoColumn'">
+              <a (click)="campaignTemplate = 'oneToTwoColumn'">
                 <div style="padding: 1rem; text-align: center">
-                  <div [ngClass]="{'campaign-design': campaignFollowUpTemplate ==='oneToTwoColumn'}" class="campaign-design-border">
+                  <div [ngClass]="{'campaign-design': campaignTemplate ==='oneToTwoColumn'}" class="campaign-design-border">
                     <img src="src/assets/1_2_column.png" height="80px" width="80px">
                     <div> 1:2:1 columns</div>
                   </div>
@@ -529,24 +486,183 @@
             </div>
           </div>
         </div>
-        <div style="padding: 1rem" *ngIf="campaignFollowUpTemplate != null || campaignFollowUpTemplate != ''">
+        <div style="padding: 1rem">
           <div align="center" class="cols" style="padding: 5rem;border-color: lightgray; border-style: solid">
-            <input type="text" class="form-control" width="60" id="emailSubject" aria-describedby="emailHelp"
+            <input type="text" class="form-control" width="60" id="emailSubject" aria-describedby="emailHelp" [(ngModel)]="emailSubject"
               placeholder="Enter Subject">
             <br>
-            <textarea rows="10" cols="65" style="resize: none; border-width: 1px; border-radius: 3px" class="form-control"
+            <textarea rows="10" cols="65" style="resize: none; border-width: 1px; border-radius: 3px" class="form-control" [(ngModel)]="emailBody"
               placeholder="Email Body"></textarea>
           </div>
         </div>
+        <div class="row" style="padding: 1rem">
+          <div class="col-sm-4">
+            Number of follow-up emails to be sent
+          </div>
+          <div class="col-sm-4">
+            <div class="row">
+              <a (click)="followUpEmailCounter != 0 ? followUpEmailCounter = followUpEmailCounter-1 : followUpEmailCounter = 0">
+                <div class="plusMinusButton"> - </div>
+              </a>
+              <div class="plusMinusButton"> {{ followUpEmailCounter }}</div>
+              <a (click)="followUpEmailCounter = followUpEmailCounter+1">
+                <div class="plusMinusButton">+</div>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="followUpEmailCounter > 0">
+          <div class="row" style="padding-top: 1rem">
+            <div class="col-sm-4" style="padding-top: 1rem">
+              Choose template for your follow-up email
+            </div>
+            <div>
+              <div class="row" style="padding-left: 1rem;">
+                <a (click)="campaignFollowUpTemplate = 'blank'">
+                  <div style="padding: 1rem;padding-left:1rem;  text-align: center">
+                    <div [ngClass]="{'campaign-design': campaignFollowUpTemplate ==='blank'}" style="min-height: 136px; min-width: 112px;display: flex;flex-direction: column-reverse;"
+                      class="campaign-design-border">
+                      <div>Blank</div>
+                    </div>
+                  </div>
+                </a>
+                <a (click)="campaignFollowUpTemplate = 'oneColumn'">
+                  <div style="padding: 1rem; text-align: center">
+                    <div [ngClass]="{'campaign-design': campaignFollowUpTemplate ==='oneColumn'}" class="campaign-design-border">
+                      <img src="src/assets/1_column.png" style="padding-bottom: 1rem;" height="80px" width="80px">
+                      <div> 1 Column</div>
+                    </div>
+                  </div>
+                </a>
+                <a (click)="campaignFollowUpTemplate = 'oneColumnFullWidth'">
+                  <div style="padding: 1rem; text-align: center">
+                    <div [ngClass]="{'campaign-design': campaignFollowUpTemplate ==='oneColumnFullWidth'}" class="campaign-design-border">
+                      <img src="src/assets/1_column_full_width.png" height="55px" width="70px" style="padding-bottom: 1rem;">
+                      <div> 1 Column <br> Full Width</div>
+                    </div>
+                  </div>
+                </a>
+                <a (click)="campaignFollowUpTemplate = 'oneToTwoColumn'">
+                  <div style="padding: 1rem; text-align: center">
+                    <div [ngClass]="{'campaign-design': campaignFollowUpTemplate ==='oneToTwoColumn'}" class="campaign-design-border">
+                      <img src="src/assets/1_2_column.png" height="80px" width="80px">
+                      <div> 1:2:1 columns</div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div style="padding: 1rem" *ngIf="campaignFollowUpTemplate != null || campaignFollowUpTemplate != ''">
+            <div align="center" class="cols" style="padding: 5rem;border-color: lightgray; border-style: solid">
+              <input type="text" class="form-control" width="60" id="emailSubject" aria-describedby="emailHelp" placeholder="Enter Subject">
+              <br>
+              <textarea rows="10" cols="65" style="resize: none; border-width: 1px; border-radius: 3px" class="form-control" placeholder="Email Body"></textarea>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="row">
+
+      <div id='social-media-details' *ngIf="campaignType === 'socialMedia'" align="left">
+        <div class="row" style="padding-top: 1rem">
+          <div class="col-sm-4" style="padding-top: 1rem">
+            Choose the social media platform
+          </div>
+          <div>
+            <div class="row" style="padding-left: 1rem;">
+              <a (click)="campaignTypeClicked('socialMedia','facebook')">
+                <div style="padding: 1rem;padding-left:1rem;  text-align: center;">
+                  <div [ngClass]="{'campaign-design': socialMediaPlatform ==='facebook'}" class="campaign-design-border">
+                    <img src="src/assets/facebook-thumb.PNG" *ngIf="socialMediaPlatform != 'facebook'" height="80px" width="80px">
+                    <img src="src/assets/facebook-thumb.PNG" *ngIf="socialMediaPlatform === 'facebook'" height="80px" width="80px">
+                    <div> Facebook</div>
+                  </div>
+                </div>
+              </a>
+              <a (click)="campaignTypeClicked('socialMedia','instagram')">
+                <div style="padding: 1rem; text-align: center">
+                  <div [ngClass]="{'campaign-design': socialMediaPlatform ==='instagram'}" class="campaign-design-border">
+                    <img src="src/assets/instagram-thumb.png" *ngIf="socialMediaPlatform != 'instagram'" height="80px" width="80px">
+                    <img src="src/assets/instagram-thumb.png" *ngIf="socialMediaPlatform === 'instagram'" height="80px" width="80px">
+                    <div> Instagram</div>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id='facebook-details' *ngIf="socialMediaPlatform === 'facebook'" align="left">
+        <div class="row">
+          <div class="col-sm-4">
+            Enter a caption for your post
+          </div>
+          <div class="col-sm-4">
+            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter a caption for your post" [(ngModel)]='fbPostCaption'>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-sm-4">
+            Upload Photo/Video
+          </div>
+          <div *ngIf="uploadPickerCheck === 'N'" class="col-sm-4 image-upload">
+            <label for="file-input">
+              <img src="../assets/fbUploadPhoto.png" style="pointer-events: none" />
+          </label>
+            <input type="file" id="file-input" class="upload" (change)="convertFile($event)" accept="png,jpeg,jpg">
+          </div>
+          <div class="row" *ngIf="uploadPickerCheck === 'Y'" style="padding-left:30px">
+            <div class="col-sm-6">
+              <div class="table" >
+                <img class="row" [src] = "img_url" style="pointer-events: none" />
+                <div class="row"> <button class="btn btn-light">
+                        Remove</button> </div>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <img src="../assets/addMoreFiles.png" style="pointer-events: none" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="socialMediaPlatform != 'facebook'" class="row">
         <div class="col-sm-4" align="left" style="padding: 2rem"> <button class="btn btn-light" (click)="selectedStep = 1">
-            < Go Back</button> </div> <div class="col-sm-8" align="right" style="padding: 2rem"><button class="btn btn-warning btn-lg"
-                (click)="selectedStep = 3"><b>Confirm
-                  and Proceed to Step 3</b></button></div>
+            < Go Back</button> </div>
+        <div class="col-sm-8" align="right" style="padding: 2rem"><button class="btn btn-warning btn-lg" (click)="selectedStep = 3"><b>Proceed to Step 2
+          </b></button></div>
       </div>
+      <div *ngIf="socialMediaPlatform === 'facebook'" class="row">
+          <div class="col-sm-4" align="left" style="padding: 2rem"> <button class="btn btn-light" (click)="selectedStep = 1">
+              < Go Back</button> </div>
+          <div class="col-sm-8" align="right" style="padding: 2rem"><button class="btn btn-warning btn-lg" (click)="selectedStep = 10"><b>Proceed to Step 2
+            </b></button></div>
+        </div>
     </div>
 
+    <div>
+        <div *ngIf="selectedStep === 10" style="background-color: white; padding:2rem 5rem">
+            <div class="row" style="padding-top: 1rem">
+              <div class="col-sm-4" style="padding-top: 1rem">
+                Preview Facebook Post
+              </div>
+              <div>
+                <div align="center" class="row fb-post-caption" style="background-image: url('../assets/post_template.png')">
+                 <div class="col" style="padding-left: 6%">
+                  <div class="row"><output>{{fbPostCaption}}</output></div><br>
+                 <div class="row"><img [src] = "img_url"></div>
+                 </div>
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+
+    <div *ngIf="selectedStep === 10" class="row row-options-step3">
+        <div class="col-sm-4" align="left" style="padding: 2rem"> <button class="btn btn-light" (click)="selectedStep = 2">
+            < Go Back</button> </div>
+        <div class="col-sm-8" align="right" style="padding: 2rem"><button class="btn btn-warning btn-lg" (click)="postToFBWebService()"><b>Confirm and Run Campaign</b></button></div>
+    </div>
 
     <div *ngIf="selectedStep === 3" style="background-color: white; padding:2rem 5rem">
       <div class="row row-options">
@@ -568,8 +684,7 @@
         <h5>2. Test your Campaign</h5>
       </div>
       <div class="row row-options">
-        <div class="col-sm-4"><input type="text" class="form-control" [(ngModel)]="testEmail" value="alantiredemo@outlook.com"
-            placeholder="Enter Email Address"></div>
+        <div class="col-sm-4"><input type="text" class="form-control" [(ngModel)]="testEmail" value="alantiredemo@outlook.com" placeholder="Enter Email Address"></div>
         <div class="col-sm-4"><button class="btn btn-light" (click)="sendEmail()">Send Test Email</button></div>
       </div>
       <div class="row row-options-step3">
@@ -588,9 +703,10 @@
       </div>
       <div class="row row-options-step3">
         <div class="col-sm-4" align="left" style="padding: 2rem"> <button class="btn btn-light" (click)="selectedStep = 2">
-            < Go Back</button> </div> <div class="col-sm-8" align="right" style="padding: 2rem"><button class="btn btn-warning btn-lg"
-                [disabled]="isButtonDisabled()" (click)="selectedStep = 4"><b>Confirm and Run Campaign</b></button></div>
+            < Go Back</button> </div>
+        <div class="col-sm-8" align="right" style="padding: 2rem"><button class="btn btn-warning btn-lg" [disabled]="isButtonDisabled()" (click)="selectedStep = 4"><b>Confirm and Run Campaign</b></button></div>
       </div>
+      
 
     </div>
     <div *ngIf="selectedStep === 4" align="center">

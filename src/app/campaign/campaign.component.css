@@ -125,3 +125,25 @@ btn-circle-active {
 .row-options-step3 {
 padding-top: 2rem;
 }
+
+.image-upload>input {
+    visibility: hidden;
+    width: 0;
+    height: 0
+ }
+
+ .fb-post-caption {
+    padding-left: 2rem;
+    padding-top: 4.5rem;
+    height: 430px;
+    width: 430px;
+ }
+
+.fb-post-image {
+    vertical-align: middle;
+    border-style: none;
+    width: 70%;
+    height: 70%;
+    padding-left: 2px;
+    padding-bottom: 25%;
+}
